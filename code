@@ -38,6 +38,33 @@ GPIO.cleanup ()
 '''
  #画像撮影（撮影データは撮影データファイルへ）
 
+ import signal
+            import buttonshim
+            import sys
+            import time
+            import picamera
+            
+            BUTTONS = [buttonshim.BUTTON_A, buttonshim.BUTTON_B, buttonshim.BUTTON_C, buttonshim.BUTTON_D, buttonshim.BUTTON_E]
+            
+            # ボタンを押されたときに呼び出されるように設定する
+            @buttonshim.on_press(BUTTONS)
+            def button_p_handler(button, pressed):
+                # Aボタンを押されたとき
+                if (button == 0):
+                    # カメラ初期化
+                    with picamera.PiCamera() as camera:
+                        # 解像度の設定
+                        camera.resolution = (1024, 768)
+                        # 撮影の準備
+                        camera.start_preview()
+                        # 準備している間、少し待機する
+                        time.sleep(2)
+                        # 撮影して指定したファイル名で保存する
+                        camera.capture('my_pic.jpg')
+                        print('Camera End!')
+            
+            signal.pause()            
+    
 
 
 
