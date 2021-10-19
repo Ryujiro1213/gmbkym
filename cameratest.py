@@ -43,7 +43,7 @@ def save_frame_camera_key(device_num, dir_path, basename, ext='jpg', delay=1, wi
         cv2.imshow(window_name, frame)
         key = cv2.waitKey(delay) & 0xFF
         if key == ord('c'):
-            cv2.imwrite('{}_{}.{}'.format(base_path, n, ext), frame)
+            cv2.imwrite('{}_{}.{}'.format(base_path, n, jpg), frame)
             n += 1
         elif key == ord('q'):
             break
