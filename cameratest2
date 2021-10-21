@@ -1,5 +1,6 @@
 import cv2
 import os
+import datetime
 
 def save_frame_camera_key(device_num, dir_path, basename, ext='jpg', delay=1, window_name='frame'):
     cap = cv2.VideoCapture(device_num)
@@ -7,8 +8,10 @@ def save_frame_camera_key(device_num, dir_path, basename, ext='jpg', delay=1, wi
     if not cap.isOpened():
         return
 
-    os.makedirs(dir_path, exist_ok=True)
-    base_path = os.path.join(dir_path, basename)
+    time = datetime.datetime.now()
+    dir_path2 = dir_path + str(time)
+    os.makedirs(dir_path2, exist_ok=True)
+    base_path = os.path.join(dir_path2, basename)
 
     n = 0
     while True:
@@ -31,5 +34,5 @@ def save_frame_camera_key(device_num, dir_path, basename, ext='jpg', delay=1, wi
 
 #save_frame_camera_key(0, 'data/temp/', 'camera_capture')
 #deta/tempに/を付けた10/21/13:16
-save_frame_camera_key(0, '/home/pi/pbl-jpg', 'camera_capture')
+save_frame_camera_key(0, '/home/pi/pbl-jpg/', 'camera_capture')
 #保存ファイルの変更10/21/13:39
