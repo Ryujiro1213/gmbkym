@@ -25,5 +25,7 @@ def save_frame_camera_key(device_num, dir_path, basename, ext='jpg', delay=1, wi
     cv2.destroyWindow(window_name)
 
 
-save_frame_camera_key(0, 'data/temp/', 'camera_capture')
+#save_frame_camera_key(0, 'data/temp/', 'camera_capture')
 #deta/tempに/を付けた10/21/13:16
+save_frame_camera_key(0, '/home/pi/pbl-jpg', 'camera_capture')
+#保存ファイルの変更10/21/13:39
