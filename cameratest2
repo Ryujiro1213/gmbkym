@@ -16,7 +16,7 @@ def save_frame_camera_key(device_num, dir_path, basename, ext='jpg', delay=1, wi
         cv2.imshow(window_name, frame)
         key = cv2.waitKey(delay) & 0xFF
         if key == ord('c'):
-            #cv2.imwrite('{}_{}.{}'.format(base_path, n, ext), frame)
+            #cv2.imwrite('{}_{}.{}'.format(base_path, n, ext), frame) frameがwindow_nameと与えられているため間違い？
             cv2.imwrite('{}_{}.{}'.format(base_path, n, ext), window_name)
             n += 1
         elif key == ord('q'):
