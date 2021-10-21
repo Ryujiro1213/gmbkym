@@ -17,8 +17,11 @@ def save_frame_camera_key(device_num, dir_path, basename, ext='jpg', delay=1, wi
         key = cv2.waitKey(delay) & 0xFF
         if key == ord('c'):
             #cv2.imwrite('{}_{}.{}'.format(base_path, n, ext), frame) frameがwindow_nameと与えられているため間違い？
-            #cv2.imwrite('{}_{}.{}'.format(base_path, n, ext), window_name) もとに戻す
+            #cv2.imwrite('{}_{}.{}'.format(base_path, n, ext), window_name) もとに戻す　＋写真撮影が成功したかどうかをはんだんするためのprintを挿入
             cv2.imwrite('{}_{}.{}'.format(base_path, n, ext), frame)
+            print('com')
+            # ./darknet detect cfg/yolov4-tiny.cfg yolov4-tiny.weights '{}_{}.{}'.format(base_path, n, ext) を入れて画像認識に挑戦　10/21/14:08このプログラムよりtest3
+            #上記プログラム動作せず　sh　つまりコマンドプロンプト用のプログラムであるから動作しない？原因究明へ10/21/14:10
             n += 1
         elif key == ord('q'):
             break
