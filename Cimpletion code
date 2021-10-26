@@ -10,16 +10,26 @@ def save_frame_camera_key(device_num, dir_path, basename, ext='jpg', delay=1, wi
 
     time = datetime.datetime.now()
     dir_path2 = dir_path + str(time)
-    os.makedirs(dir_path2, exist_ok=True)
-    base_path = os.path.join(dir_path2, basename)
-
+    dir_path3 = dir_path + str('000')
+    
     n = 0
     while True:
         ret, frame = cap.read()
         cv2.imshow(window_name, frame)
         key = cv2.waitKey(delay) & 0xFF
         if key == ord('c'):
+            os.makedirs(dir_path2, exist_ok=True)
+            base_path = os.path.join(dir_path2, basename)
             cv2.imwrite('{}_{}.{}'.format(base_path, n, ext), frame)
+            n += 1
+        elif key == ord('v'):
+            os.makedirs(dir_path3, exist_ok=True)
+            base_path = os.path.join(dir_path3, basename)
+            cv2.imwrite('{}_{}.{}'.format(base_path, '000', ext), frame)
+            args = shlex.split("sh rec.sh")
+            ret = subprocess.call(args)
+            time.sleep(100)
+            print(ret)
             n += 1
         elif key == ord('q'):
             break
